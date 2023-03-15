@@ -77,9 +77,10 @@ app = Flask(__name__)
 def home():
     return "Page"
 
-@app.route('/predict', methods = ['POST'])
+@app.route('/predict', methods = ['GET'])
 def predict():
-    review = request.form.get('review')
+    # review = request.form.get('review')
+    review = request.args.get('review')
     result = test(review)
     return jsonify({'result':int(result)})
 
