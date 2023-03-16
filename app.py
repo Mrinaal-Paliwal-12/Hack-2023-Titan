@@ -25,7 +25,7 @@ dataset = pd.read_csv('./ApData.csv', quoting=3, header=None)
 ps = PorterStemmer()
 
 corpus = []
-for i in range(0, 50):
+for i in range(0, dataset.shape[0]):
     review = re.sub('[^a-zA-Z]', ' ', dataset[0][i])
     review = review.lower()
     review = review.split()
@@ -49,7 +49,7 @@ print("Precision: ", precision)
 recall = 91/(91+12)
 print("Recall: ", recall)
 print("F1 Score: ", (2*precision*recall)/(precision+recall))
-
+#.dump({"model":model},open("saved_model.pkl","wb"))
 model=pickle.load(open("saved_model.pkl","rb"))['model']
 
 def test(data):
@@ -65,7 +65,6 @@ def test(data):
     X_test1
     Y_pred1=model.predict(X_test1)
     return Y_pred1[0]
-print(test("employee information!"))
 
 
 from flask import Flask,request,jsonify
