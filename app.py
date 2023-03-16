@@ -49,7 +49,7 @@ print("Precision: ", precision)
 recall = 91/(91+12)
 print("Recall: ", recall)
 print("F1 Score: ", (2*precision*recall)/(precision+recall))
-#.dump({"model":model},open("saved_model.pkl","wb"))
+# pickle.dump({"model":model},open("saved_model.pkl","wb"))
 model=pickle.load(open("saved_model.pkl","rb"))['model']
 
 def test(data):
